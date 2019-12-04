@@ -1,5 +1,5 @@
 # 0.前置说明
-[xxl-job 安装说明及常见说明](https://github.com/Guosd/Sinosoft/blob/master/doc/Linux/4.XXL-Job/1.%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B.md)
+[xxl-job 安装说明及常见说明: `/doc/Linux/XXL-Job/1.安装过程.md`](https://github.com/Guosd/Sinosoft/blob/master/doc/Linux/4.XXL-Job/1.%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B.md)
 
 [官方文档路径](https://github.com/xuxueli/xxl-job/blob/master/doc/XXL-JOB官方文档.md)
 
