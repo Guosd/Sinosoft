@@ -7,6 +7,7 @@ Excel 文件生成，下载只需如下一行代码（有没有很爽！）
 ```java
 new ExportExcel("标题", Test.class).setDataList(testList).write(response, fileName).dispose();
 ```
+文件名称：类名所在文件夹
 
 ## 1. 使用说明
 
@@ -34,15 +35,15 @@ new ExportExcel("标题", Test.class).setDataList(testList).write(response, file
 ```java
 @Data
 public class Test implements Serializable {
-	// title 列名  
+  // title 列名  
   // align 0：自动；1：靠左；2：居中；3：靠右
   // sort 导出字段字段排序
-	@ExcelField(title="Test1", align=2, sort=10)
-	private Date test1;
+  @ExcelField(title="Test1", align=2, sort=10)
+  private Date test1;
   @ExcelField(title="Test2", align=2, sort=20)
-	private String test2;
+  private String test2;
   @ExcelField(title="Test3", align=2, sort=30)
-	private Long test3;
+  private Long test3;
 }
 ```
 
@@ -59,22 +60,22 @@ new ExportExcel("标题", Test.class).setDataList(testList).write(response, file
 
  ## 2.源码分析
 
-ExportExcel
-│─ ExportExcel(String title, Class<?> cls)
-│─ ExportExcel(String title, Class<?> cls, int type, int... groups)
-│─ ExportExcel(String title, String[] headers)
-│─ ExportExcel(String title, List<String> headerList)
-│─ private initialize(String title, List<String> headerList)
-│─ private Map<String, CellStyle> createStyles(Workbook wb)
-│─ public Row addRow()
-│─ public Cell addCell(Row row, int column, Object val)
-│─ public Cell addCell(Row row, int column, Object val, int align, Class<?> fieldType)
-│─ public <E> ExportExcel setDataList(List<E> list)
-│─ public ExportExcel write(OutputStream os)
-│─ public ExportExcel write(HttpServletResponse response, String fileName) 
-│─ public ExportExcel writeFile(String name)
-│─ public ExportExcel dispose()
-└─ ......
+ExportExcel <br/>
+│─ ExportExcel(String title, Class<?> cls) <br/>
+│─ ExportExcel(String title, Class<?> cls, int type, int... groups)<br/>
+│─ ExportExcel(String title, String[] headers)<br/>
+│─ ExportExcel(String title, List<String> headerList)<br/>
+│─ private initialize(String title, List<String> headerList)<br/>
+│─ private Map<String, CellStyle> createStyles(Workbook wb)<br/>
+│─ public Row addRow()<br/>
+│─ public Cell addCell(Row row, int column, Object val)<br/>
+│─ public Cell addCell(Row row, int column, Object val, int align, Class<?> fieldType)<br/>
+│─ public <E> ExportExcel setDataList(List<E> list)<br/>
+│─ public ExportExcel write(OutputStream os)<br/>
+│─ public ExportExcel write(HttpServletResponse response, String fileName) <br/>
+│─ public ExportExcel writeFile(String name)<br/>
+│─ public ExportExcel dispose()<br/>
+└─ ......<br/>
 
 ### 划重点
 
