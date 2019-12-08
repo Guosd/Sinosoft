@@ -40,6 +40,7 @@ public class MyConfig {
 ### 1.4 MyEntity.java
 
 ```java
+@Data
 public class MyEntity implements Serializable {
 	
 	private int id;
@@ -51,18 +52,6 @@ public class MyEntity implements Serializable {
 	public MyEntity(int id, String msg) {
 		super();
 		this.id = id;
-		this.msg = msg;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getMsg() {
-		return msg;
-	}
-	public void setMsg(String msg) {
 		this.msg = msg;
 	}
 }
@@ -159,17 +148,6 @@ public class MySender {
 
 ```
 
-### 1.6 Application.java
-
-```java
-@SpringBootApplication
-public class Application {
-    public static void main( String[] args ) {
-        SpringApplication.run(Application.class, args);
-    }
-}
-```
-
 
 
 ## 2 consumer-consumer
@@ -221,6 +199,7 @@ public class MyConfig {
 ### 2.4 MyEntity.java
 
 ```java
+@Data
 public class MyEntity implements Serializable {
 	
 	private int id;
@@ -232,18 +211,6 @@ public class MyEntity implements Serializable {
 	public MyEntity(int id, String msg) {
 		super();
 		this.id = id;
-		this.msg = msg;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getMsg() {
-		return msg;
-	}
-	public void setMsg(String msg) {
 		this.msg = msg;
 	}
 }
@@ -309,17 +276,6 @@ public class MyReceiver{
 		Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
 		channel.basicAck(deliveryTag, false);
 	}
-}
-```
-
-### 2.6 Application.java
-
-```java
-@SpringBootApplication
-public class Application {
-    public static void main( String[] args ) {
-        SpringApplication.run(Application.class, args);
-    }
 }
 ```
 

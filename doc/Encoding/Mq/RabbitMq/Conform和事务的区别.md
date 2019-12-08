@@ -41,4 +41,3 @@
 >
 >      异步监听消息确认：channel.addConfirmListener() 或 rabbitTemplate.setConfirmCallback(confirmCallback)异步监听发送方确认模式。
 >
-> 

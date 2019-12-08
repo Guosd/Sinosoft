@@ -47,6 +47,7 @@ public class MyConfig {
 ### 1.4 MyEntity.java
 
 ```java
+@Data
 public class MyEntity implements Serializable {
 	
 	private int id;
@@ -58,18 +59,6 @@ public class MyEntity implements Serializable {
 	public MyEntity(int id, String msg) {
 		super();
 		this.id = id;
-		this.msg = msg;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getMsg() {
-		return msg;
-	}
-	public void setMsg(String msg) {
 		this.msg = msg;
 	}
 }
@@ -118,17 +107,6 @@ public class MySender {
 		CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
 		rabbitTemplate.convertAndSend("single-exchange-2", "single.gsdf", myEntity, correlationData);
 	}
-}
-```
-
-### 1.6 Application.java
-
-```java
-@SpringBootApplication
-public class Application {
-    public static void main( String[] args ) {
-        SpringApplication.run(Application.class, args);
-    }
 }
 ```
 
@@ -185,6 +163,7 @@ public class MyConfig {
 ### 2.4 MyEntity.java
 
 ```java
+@Data
 public class MyEntity implements Serializable {
 	
 	private int id;
@@ -196,18 +175,6 @@ public class MyEntity implements Serializable {
 	public MyEntity(int id, String msg) {
 		super();
 		this.id = id;
-		this.msg = msg;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getMsg() {
-		return msg;
-	}
-	public void setMsg(String msg) {
 		this.msg = msg;
 	}
 }
@@ -265,17 +232,6 @@ public class MyReceiver{
 		//消息处理
 		System.err.println("receive entity：" + myEntity.getMsg());
 	}
-}
-```
-
-### 2.6 Application.java
-
-```java
-@SpringBootApplication
-public class Application {
-    public static void main( String[] args ) {
-        SpringApplication.run(Application.class, args);
-    }
 }
 ```
 
