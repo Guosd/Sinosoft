@@ -10,27 +10,6 @@ new ExportExcel("标题", Test.class).setDataList(testList).write(response, file
 文件名称：类名所在文件夹
 
 ## 1. 使用说明
-
-- 导入Poi工具包
-
-```xml
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi</artifactId>
-    <version>3.9</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi-ooxml</artifactId>
-    <version>3.9</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi-ooxml-schemas</artifactId>
-    <version>3.9</version>
-</dependency>
-```
-
 - 编写实体类
 ```java
 @Data
@@ -40,10 +19,7 @@ public class Test implements Serializable {
   // sort 导出字段字段排序
   @ExcelField(title="Test1", align=2, sort=10)
   private Date test1;
-  @ExcelField(title="Test2", align=2, sort=20)
-  private String test2;
-  @ExcelField(title="Test3", align=2, sort=30)
-  private Long test3;
+	...
 }
 ```
 
@@ -59,25 +35,6 @@ new ExportExcel("标题", Test.class).setDataList(testList).write(response, file
 ```
 
  ## 2.源码分析
-
-ExportExcel <br/>
-│─ ExportExcel(String title, Class<?> cls) <br/>
-│─ ExportExcel(String title, Class<?> cls, int type, int... groups)<br/>
-│─ ExportExcel(String title, String[] headers)<br/>
-│─ ExportExcel(String title, List<String> headerList)<br/>
-│─ private initialize(String title, List<String> headerList)<br/>
-│─ private Map<String, CellStyle> createStyles(Workbook wb)<br/>
-│─ public Row addRow()<br/>
-│─ public Cell addCell(Row row, int column, Object val)<br/>
-│─ public Cell addCell(Row row, int column, Object val, int align, Class<?> fieldType)<br/>
-│─ public <E> ExportExcel setDataList(List<E> list)<br/>
-│─ public ExportExcel write(OutputStream os)<br/>
-│─ public ExportExcel write(HttpServletResponse response, String fileName) <br/>
-│─ public ExportExcel writeFile(String name)<br/>
-│─ public ExportExcel dispose()<br/>
-└─ ......<br/>
-
-### 划重点
 
 1. 实例化导出工具
 `public ExportExcel(String title, Class<?> cls, int type, int... groups)`
@@ -124,3 +81,47 @@ ExportExcel <br/>
    `public ExportExcel write(HttpServletResponse response, String fileName)`
 
    > 使用流进行输出
+
+***
+
+```
+# ExportExcel 类中方法
+ExportExcel 
+│─ ExportExcel(String title, Class<?> cls)
+│─ ExportExcel(String title, Class<?> cls, int type, int... groups)
+│─ ExportExcel(String title, String[] headers)
+│─ ExportExcel(String title, List<String> headerList)
+│─ private initialize(String title, List<String> headerList)
+│─ private Map<String, CellStyle> createStyles(Workbook wb)
+│─ public Row addRow()
+│─ public Cell addCell(Row row, int column, Object val)
+│─ public Cell addCell(Row row, int column, Object val, int align, Class<?> fieldType)
+│─ public <E> ExportExcel setDataList(List<E> list)
+│─ public ExportExcel write(OutputStream os)
+│─ public ExportExcel write(HttpServletResponse response, String fileName)
+│─ public ExportExcel writeFile(String name)
+│─ public ExportExcel dispose()
+└─ ......
+```
+
+***
+
+```xml
+<!-- 引入jar包 -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.9</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>3.9</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml-schemas</artifactId>
+    <version>3.9</version>
+</dependency>
+```
+
