@@ -7,7 +7,7 @@
 - 上传文件
 
 - 解析
-> 解析也只需要一句话（）
+> 解析也只需要一句话
 ```
 ImportExcel ei = new ImportExcel(file, 1, 0);
 List<User> list = ei.getDataList(User.class);
