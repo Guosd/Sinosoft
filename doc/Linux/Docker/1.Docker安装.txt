@@ -1,0 +1,66 @@
+# Docker安装
+
+## 1. 什么是Docker
+
+​		Docker是开发人员和系统管理员使用容器开发、部署和运行应用程序的平台。使用Linux容器来部署应用程序称为集装箱化。使用docker轻松部署应用程序。
+
+​		Docker将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了Docker，就不用担心环境问题。
+总体来说，Docker的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
+
+## 2. 安装要求
+
+> CentOS 具体要求如下：
+>
+> 1. 必须是 64 位操作系统
+> 2. 建议内核在 3.8 以上
+
+## 3. 系统升级（非必须）
+
+```shell
+yum -y update
+```
+
+## 4. 添加yum仓库
+
+```shell
+cat >/etc/yum.repos.d/docker.repo <<-EOF
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+EOF
+```
+
+## 5. 安装docker
+
+```shell
+yum -y install docker
+```
+
+## 6. 命令
+
+- 启动服务
+
+```shell
+systemctl start docker.service 
+```
+
+------
+
+```shell
+显示服务状态：systemctl status docker.service
+列出服务层级和依赖关系：systemctl list-dependencies docker.service
+
+启动服务：systemctl start docker.service
+关闭服务：systemctl stop docker.service
+重启服务：systemctl restart docker.service
+
+设置服务自启动：systemctl enable docker.service
+禁止服务自启动：systemctl disable docker.service
+
+查看服务是否自启动：systemctl is-enabled docker.service
+列出系统所有服务的启动情况：systemctl list-units --type=service
+列出所有自启动服务：systemctl list-unit-files|grep enabled
+```

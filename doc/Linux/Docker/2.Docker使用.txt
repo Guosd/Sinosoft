@@ -1,0 +1,52 @@
+# Docker使用
+
+# 1. 搜索镜像
+
+> docker search image_name     #iamge_name**为搜索的镜像名**
+
+```shell
+docker search centos
+```
+
+```shell
+docker search nginx
+```
+
+# 2. 拉取镜像
+
+> docker pull  image_name     #iamge_name**为搜索的镜像名**
+
+```shell
+docker pull centos
+```
+
+```shell
+docker pull nginx
+```
+
+# 3.命令
+
+```shell
+启动容器：docker start [容器id]
+停止容器：docker stop [容器id]
+重启容器：docker restart [容器id]
+删除容器：docker rm [容器id]
+删除镜像：docker rmi [镜像id]
+查看容器：docker ps -a
+进入容器：docker attach [容器id]（不推荐）
+        docker exec -it [容器id] /bin/bash（推荐使用）-d :分离模式: 在后台运行 -i :即使没有附加也保持STDIN 打开 -t :分配一个伪终端
+启动所有的容器：
+docker start $(docker ps -a | awk '{ print $1}' | tail -n +2)
+关闭所有的容器：
+docker stop $(docker ps -a | awk '{ print $1}' | tail -n +2)
+删除所有的容器：
+docker rm $(docker ps -a | awk '{ print $1}' | tail -n +2)
+删除所有的镜像：
+docker rmi $(docker images | awk '{print $3}' |tail -n +2)
+```
+
+# 4.
+
+# 5.
+
+# 6.
