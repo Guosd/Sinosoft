@@ -1,3 +1,5 @@
+
+
 # Docker安装
 
 ## 1. 什么是Docker
@@ -47,7 +49,7 @@ yum -y install docker
 systemctl start docker.service 
 ```
 
-------
+- 其他命令
 
 ```shell
 显示服务状态：systemctl status docker.service
