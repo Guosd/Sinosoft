@@ -80,9 +80,9 @@ npm run dev
 ```
 
 ## Build
-```bush
-npm run build
-```
+```bush  
+npm run build   
+``` 
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)
