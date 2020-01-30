@@ -72,8 +72,8 @@ iView Admin is a front-end management background integration solution. It based 
 # clone the project
 git clone https://github.com/iview/iview-admin.git
 
-// install dependencies
-npm install
+// install dependencies 需指定镜像源
+npm install --registry=https://registry.npm.taobao.org
 
 // develop
 npm run dev
