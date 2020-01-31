@@ -30,8 +30,3 @@ const i18n = new VueI18n({
 })
 
 export default i18n
-
-// vue-i18n 5.x写法
-// Vue.locale('zh-CN', Object.assign(zhCnLocale, customZhCn))
-// Vue.locale('en-US', Object.assign(zhTwLocale, customZhTw))
-// Vue.locale('zh-TW', Object.assign(enUsLocale, customEnUs))
