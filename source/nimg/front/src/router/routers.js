@@ -100,6 +100,71 @@ export default [
     ]
   },
   {
+    path: '/settings',
+    name: 'settings',
+    meta: {
+      access: ['settings'],
+      icon: 'ios-settings',
+      title: '系统配置'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'user_settings',
+        name: 'userSettings',
+        meta: {
+          access: ['user_setting'],
+          icon: 'md-funnel',
+          showAlways: true,
+          title: '人员配置'
+        },
+        component: parentView,
+        children: [
+          {
+            path: 'user_page',
+            name: 'userPage',
+            meta: {
+              access: ['user_page'],
+              icon: 'md-person',
+              title: '用户管理'
+            },
+            component: () => import('@/view/components/settings/user/users.vue')
+          },
+          {
+            path: 'roles_page',
+            name: 'rolesPage',
+            meta: {
+              access: ['roles_page'],
+              icon: 'ios-contacts',
+              title: '角色配置'
+            },
+            component: () => import('@/view/components/settings/user/roles.vue')
+          },
+          {
+            path: 'function_page',
+            name: 'functionPage',
+            meta: {
+              access: ['function_page'],
+              icon: 'ios-funnel',
+              title: '功能代码'
+            },
+            component: () => import('@/view/components/settings/user/function.vue')
+          }
+        ]
+      },
+      {
+        path: 'system_code',
+        name: '系统代码',
+        meta: {
+          access: ['system_code'],
+          icon: 'md-code',
+          title: '系统代码'
+        },
+        component: () => import('@/view/components/settings/syscode.vue')
+      }
+    ]
+  },
+  {
     path: '/401',
     name: 'error_401',
     meta: {

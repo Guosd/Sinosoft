@@ -5,5 +5,8 @@ export default {
   icons_page: 'Custom-icon',
   error_store_page: 'Error Collection',
   error_logger_page: 'Error Logger',
-  demo: 'Demo'
+  demo: 'Demo',
+  settings: 'settings',
+  userPage: 'userPage',
+  rolesPage: 'rolesPage'
 }
