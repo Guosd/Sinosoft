@@ -38,4 +38,7 @@ public class PrpDCodeVo implements Serializable {
 	/** 对应字段：DISPLAY_NO,备注：显示序号 */
 	@ApiModelProperty("显示序号")
 	private BigDecimal displayNo;
+	/** 对应字段：DISPLAY_NO,备注：显示序号 */
+	@ApiModelProperty("转码类型  E:英文  C:中文 T:繁体")
+	private String transType;
 }

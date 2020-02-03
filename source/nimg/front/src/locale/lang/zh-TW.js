@@ -7,7 +7,7 @@ export default {
   error_logger_page: '錯誤日誌',
   demo: '示例',
   settings: '配置',
-  userPage: '用户管理',
+  userPage: '用戶管理',
   rolesPage: '角色管理',
-  userSettings: '人员配置'
+  userSettings: '人員配置'
 }
