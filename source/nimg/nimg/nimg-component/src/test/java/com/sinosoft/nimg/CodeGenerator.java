@@ -11,7 +11,12 @@ import java.util.List;
 public class CodeGenerator {
 
 	public static void main(String[] args) {
-        doGenerate("test11","test11");
+        doGenerate("sysuser","PRP_D_USER");
+        doGenerate("sysuser","PRP_D_TASK");
+        doGenerate("sysuser","PRP_D_ROLE");
+        doGenerate("sysuser","PRP_D_USER_ROLE");
+        doGenerate("sysuser","PRP_D_ROLE_TASK");
+        doGenerate("sysconfig","PRP_D_CODE");
 	}
 
 	private static void doGenerate(String module, String... tabName) {
