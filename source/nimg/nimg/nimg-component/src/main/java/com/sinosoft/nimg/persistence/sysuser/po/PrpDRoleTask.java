@@ -8,7 +8,7 @@ import lombok.Data;
 
 /**
  *
- * 通过evo-code-generator工具自动生成，请勿手工修改。表PRP_D_ROLE_TASK的PO对象<br/>
+ * 通过evo-code-generate-mybatis工具自动生成，请勿手工修改。表PRP_D_ROLE_TASK的PO对象<br/>
  * 对应表名：PRP_D_ROLE_TASK,备注：角色任务关联表
  *
  */

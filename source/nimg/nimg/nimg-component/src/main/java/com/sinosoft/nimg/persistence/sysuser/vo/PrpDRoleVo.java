@@ -28,19 +28,4 @@ public class PrpDRoleVo implements Serializable {
 	/** 对应字段：SYSTEM,备注：系统代码 */
 	@ApiModelProperty("系统代码")
 	private String system;
-	/** 对应字段：DELETE_FLAG,备注：删除标志 */
-	@ApiModelProperty("删除标志")
-	private String deleteFlag;
-	/** 对应字段：CREATE_BY,备注：创建者 */
-	@ApiModelProperty("创建者")
-	private String createBy;
-	/** 对应字段：UPDATE_BY,备注：更新者 */
-	@ApiModelProperty("更新者")
-	private String updateBy;
-	/** 对应字段：CREATE_TIME,备注：创建时间 */
-	@ApiModelProperty("创建时间")
-	private Date createTime;
-	/** 对应字段：UPDATE_TIME,备注：更新时间 */
-	@ApiModelProperty("更新时间")
-	private Date updateTime;
 }
