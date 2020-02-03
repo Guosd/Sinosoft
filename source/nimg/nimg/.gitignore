@@ -1,0 +1,4 @@
+/nimg-component/target/*
+.idea/*
+/nimg-core/target/*
+*.iml
