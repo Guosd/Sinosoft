@@ -35,7 +35,12 @@
       @on-expand="onExpand"
     >
       <slot name="header" slot="header"></slot>
-      <slot name="footer" slot="footer"></slot>
+      <slot name="footer" slot="footer" v-if=footer>
+        <div class="footer">
+          <Page :total="insidePage.dataCount" :page-size="insidePage.pageSize" show-sizer class="paging" @on-change="changepage" @on-page-size-change="pagesize"></Page>
+        </div>
+      </slot>
+      <slot name="footer" slot="footer" v-else-if=!footer></slot>
       <slot name="loading" slot="loading"></slot>
     </Table>
     <div v-if="searchable && searchPlace === 'bottom'" class="search-con search-con-top">
@@ -57,9 +62,13 @@ export default {
   name: 'Tables',
   props: {
     value: {
-      type: Array,
+      type: Object,
       default () {
-        return []
+        return {
+          dataCount: 0,
+          pageSize: 10,
+          data: []
+        }
       }
     },
     columns: {
@@ -113,6 +122,10 @@ export default {
       type: Boolean,
       default: false
     },
+    footer: {
+      type: Boolean,
+      default: false
+    },
     /**
      * @description 全局设置是否可编辑
      */
@@ -145,6 +158,11 @@ export default {
     return {
       insideColumns: [],
       insideTableData: [],
+      tableData: {},
+      insidePage: {
+        dataCount: 0,
+        pageSize: 10
+      },
       edittingCellId: '',
       edittingText: '',
       searchValue: '',
@@ -209,17 +227,27 @@ export default {
       this.searchKey = this.columns[0].key !== 'handle' ? this.columns[0].key : (this.columns.length > 1 ? this.columns[1].key : '')
     },
     handleClear (e) {
-      if (e.target.value === '') this.insideTableData = this.value
+      if (e.target.value === '') this.insideTableData = this.tableData.data
     },
     handleSearch () {
-      this.insideTableData = this.value.filter(item => item[this.searchKey].indexOf(this.searchValue) > -1)
+      this.insideTableData = this.tableData.data.filter(item => item[this.searchKey].indexOf(this.searchValue) > -1)
     },
     handleTableData () {
-      this.insideTableData = this.value.map((item, index) => {
+      console.log(this.tableData, this.insideTableData)
+      if (this.tableData.data === undefined) {
+        this.tableData = {}
+        return
+      }
+      this.insideTableData = this.tableData.data.map((item, index) => {
         let res = item
         res.initRowIndex = index
         return res
       })
+      this.insidePage = {
+        dataCount: this.tableData.dataCount,
+        pageSize: this.tableData.pageSize
+      }
+      Object.assign(this.insidePage, this.insidePage)
     },
     exportCsv (params) {
       this.$refs.tablesMain.exportCsv(params)
@@ -256,6 +284,12 @@ export default {
     },
     onExpand (row, status) {
       this.$emit('on-expand', row, status)
+    },
+    changepage (page) {
+      console.log('改变页码', page)
+    },
+    pagesize (page) {
+      console.log('改变分页大小', page)
     }
   },
   watch: {
@@ -264,6 +298,7 @@ export default {
       this.setDefaultSearchKey()
     },
     value (val) {
+      Object.assign(this.tableData, this.value)
       this.handleTableData()
       if (this.searchable) this.handleSearch()
     }
@@ -275,3 +310,15 @@ export default {
   }
 }
 </script>
+<style>
+  .footer{
+    background-color: #F8F8F9;
+    width: 100%;
+    height: 100%;
+  }
+  .paging{
+
+    background-color: #F8F8F9;
+    float: right;
+  }
+</style>

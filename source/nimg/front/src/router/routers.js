@@ -126,7 +126,7 @@ export default [
             meta: {
               access: ['user_page'],
               icon: 'md-person',
-              title: '用户管理'
+              title: 'userPage'
             },
             component: () => import('@/view/components/settings/user/users.vue')
           },
@@ -136,7 +136,7 @@ export default [
             meta: {
               access: ['roles_page'],
               icon: 'ios-contacts',
-              title: '角色配置'
+              title: 'rolesPage'
             },
             component: () => import('@/view/components/settings/user/roles.vue')
           },
@@ -146,7 +146,7 @@ export default [
             meta: {
               access: ['function_page'],
               icon: 'ios-funnel',
-              title: '功能代码'
+              title: 'functionPage'
             },
             component: () => import('@/view/components/settings/user/function.vue')
           }
@@ -154,11 +154,11 @@ export default [
       },
       {
         path: 'system_code',
-        name: '系统代码',
+        name: 'systemCode',
         meta: {
           access: ['system_code'],
           icon: 'md-code',
-          title: '系统代码'
+          title: 'systemCode'
         },
         component: () => import('@/view/components/settings/syscode.vue')
       }

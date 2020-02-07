@@ -1,13 +1,15 @@
 <template>
   <div>
     <Card>
-      <img class="index" :src="src" :alt="code">
+      <img class="index" :src="leftSrc" >
+      <img class="index" :src="rightSrc">
     </Card>
   </div>
 </template>
 
 <script>
-import indexPicture from '@/assets/images/index.png'
+import leftPicture from '@/assets/images/leftIndex.png'
+import rightPicture from '@/assets/images/rightIndex.png'
 import errorContent from '@/view/error-page/error-content.vue'
 export default {
   name: 'home',
@@ -16,7 +18,8 @@ export default {
   },
   data () {
     return {
-      src: indexPicture
+      leftSrc: leftPicture,
+      rightSrc: rightPicture
     }
   }
 }

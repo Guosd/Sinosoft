@@ -29,6 +29,14 @@ export const saveErrorLogger = info => {
   })
 }
 
+export const translate = info => {
+  return axios.request({
+    url: 'sysconfig/translate',
+    data: info,
+    method: 'post'
+  })
+}
+
 export const uploadImg = formData => {
   return axios.request({
     url: 'image/upload',

@@ -1,8 +1,19 @@
 <template>
   <div>
     <Card>
-      <tables ref="tables" editable searchable search-place="top" v-model="tableData" :columns="columns" @on-delete="handleDelete"/>
-      <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button>
+      <tables
+        :columns="columns"
+        :loading="loading"
+        :footer=true
+        :searchable = false
+        ref="tables"
+        editable
+        search-place="top"
+
+        v-model="tableData"
+
+        @on-start-edit="handleRowEdit"
+        @on-delete="handleDelete"/>
     </Card>
   </div>
 </template>
@@ -10,6 +21,7 @@
 <script>
 import Tables from '_c/tables'
 import { getTableData } from '@/api/data'
+
 export default {
   name: 'tables_page',
   components: {
@@ -17,6 +29,7 @@ export default {
   },
   data () {
     return {
+      loading: true,
       columns: [
         { title: 'Name', key: 'name', sortable: true },
         { title: 'Email', key: 'email', editable: true },
@@ -45,22 +58,26 @@ export default {
           ]
         }
       ],
-      tableData: []
+      tableData: {}
     }
   },
   methods: {
     handleDelete (params) {
       console.log(params)
     },
-    exportExcel () {
-      this.$refs.tables.exportCsv({
-        filename: `table-${(new Date()).valueOf()}.csv`
-      })
+    handleRowEdit (params) {
+      console.log(params)
     }
   },
   mounted () {
     getTableData().then(res => {
-      this.tableData = res.data
+      console.log('表格数据数据：', res.data)
+      this.tableData = {
+        pageSize: 10,
+        dataCount: 800,
+        data: res.data
+      }
+      this.loading = false
     })
   }
 }

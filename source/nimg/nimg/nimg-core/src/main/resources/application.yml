@@ -20,7 +20,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
   client:
     serviceUrl:
-      defaultZone: http://localhost:20000/eureka
+      defaultZone: http://192.168.1.9:20000/eureka
 
 mybatis:
   mapper-locations: classpath*:mapper/**/*.xml
