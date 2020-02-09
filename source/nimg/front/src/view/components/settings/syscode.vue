@@ -3,12 +3,12 @@
     <Card>
       <div class="search-row">
         <div class="search-cell">
-          <span class="search-text">查询条件</span>
-          <Input clearable placeholder="输入关键字搜索" class="search-input"/>
+          <span class="search-text">类型</span>
+          <Input v-model="search.codeType" clearable placeholder="输入关键字搜索" class="search-input"/>
         </div>
         <div class="search-cell">
-          <span class="search-text">查询条件</span>
-          <Input clearable placeholder="输入关键字搜索" class="search-input"/>
+          <span class="search-text">代码</span>
+          <Input v-model="search.codeCode" clearable placeholder="输入关键字搜索" class="search-input"/>
         </div>
       </div>
       <div class="search-btn-row">
@@ -41,7 +41,7 @@
 
 <script>
 import Tables from '_c/tables'
-import { getTableData } from '@/api/data'
+import { querySysCode } from '@/api/data'
 
 export default {
   name: 'tables_page',
@@ -51,11 +51,15 @@ export default {
   data () {
     return {
       loading: false,
+      search: {},
       columns: [
-        { title: 'Name', key: 'name', sortable: true },
-        { title: 'Email', key: 'email', editable: true },
-        { title: 'Create-Time', key: 'createTime' },
-        {
+        { title: '类型', key: 'codeType' },
+        { title: '代码', key: 'codeCode' },
+        { title: '中文', key: 'codeCName' },
+        { title: '英文', key: 'codeEName' },
+        { title: '繁體', key: 'codeTName' },
+        { title: '序号', key: 'displayNo' }
+        /* {
           title: 'Handle',
           key: 'handle',
           options: ['delete'],
@@ -77,7 +81,7 @@ export default {
               ])
             }
           ]
-        }
+        } */
       ],
       tableData: {}
     }
@@ -91,14 +95,11 @@ export default {
     },
     handleSearch (params) {
       this.loading = true
-      console.log('handleSearch', params)
-      getTableData().then(res => {
+      Object.assign(params, this.search)
+      console.log('handleSearch', params, this.search)
+      querySysCode(params).then(res => {
         console.log('表格数据数据：', res.data)
-        this.tableData = {
-          pageSize: 10,
-          dataCount: 5,
-          data: res.data
-        }
+        this.tableData = res.data.data
         this.loading = false
       })
     }

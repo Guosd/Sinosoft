@@ -57,3 +57,10 @@ export const getTreeSelectData = () => {
     method: 'get'
   })
 }
+export const querySysCode = info => {
+  return axios.request({
+    url: 'sysconfig/queryForPage',
+    data: info,
+    method: 'post'
+  })
+}

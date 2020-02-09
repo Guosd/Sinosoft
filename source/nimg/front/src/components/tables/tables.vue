@@ -38,7 +38,7 @@
       <slot name="header" slot="header"></slot>
       <slot name="footer" slot="footer" v-if=footer>
         <div class="footer">
-          <Page :total="insidePage.dataCount" :page-size="insidePage.pageSize" show-sizer class="paging" @on-change="changepage" @on-page-size-change="pagesize"></Page>
+          <Page :total="insidePage.totalCount" :page-size="insidePage.pageSize" show-sizer class="paging" @on-change="changepage" @on-page-size-change="pagesize"></Page>
         </div>
       </slot>
       <slot name="footer" slot="footer" v-else-if=!footer></slot>
@@ -66,7 +66,7 @@ export default {
       type: Object,
       default () {
         return {
-          dataCount: 0,
+          totalCount: 0,
           pageSize: 10,
           data: []
         }
@@ -161,9 +161,9 @@ export default {
       insideTableData: [],
       tableData: {},
       insidePage: {
-        dataCount: 0,
+        totalCount: 0,
         pageSize: 10,
-        pageIndex: 1
+        pageNum: 1
       },
       edittingCellId: '',
       edittingText: '',
@@ -246,7 +246,7 @@ export default {
         return res
       })
       this.insidePage = {
-        dataCount: this.tableData.dataCount,
+        totalCount: this.tableData.totalCount,
         pageSize: this.tableData.pageSize
       }
       Object.assign(this.insidePage, this.insidePage)
@@ -287,14 +287,12 @@ export default {
     onExpand (row, status) {
       this.$emit('on-expand', row, status)
     },
-    changepage (pageIndex) {
-      this.insidePage.pageIndex = pageIndex
-      // console.log('on-page-change', pageIndex, this.insidePage.dataCount, this.insidePage.pageSize)
+    changepage (pageNum) {
+      this.insidePage.pageNum = pageNum
       this.$emit('on-search', this.insidePage)
     },
     pagesize (pageSize) {
       this.insidePage.pageSize = pageSize
-      // console.log('on-page-size', pageSize, this.insidePage.dataCount, this.insidePage.pageSize)
       this.$emit('on-search', this.insidePage)
     }
   },
