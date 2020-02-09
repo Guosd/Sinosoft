@@ -3,6 +3,9 @@ package com.sinosoft.nimg.persistence.sysconfig.vo;
 import java.io.Serializable;
 import java.util.Date;
 import java.math.BigDecimal;
+
+import com.github.framework.evo.base.dto.PageBaseDto;
+import com.github.framework.evo.common.model.Page;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,7 +17,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel("PrpDCodeVo对象")
-public class PrpDCodeVo implements Serializable {
+public class PrpDCodeVo extends PageBaseDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** 对应字段：ID,备注：主键 */

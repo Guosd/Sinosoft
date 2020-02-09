@@ -12,4 +12,6 @@ public class AutoConfiguration {
     public UpdateTimeInterceptor updateTimeInterceptor() {
         return new UpdateTimeInterceptor();
     }
+
+
 }

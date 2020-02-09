@@ -1,9 +1,12 @@
 package com.sinosoft.nimg.persistence.sysconfig.dao;
 
-import org.apache.ibatis.annotations.Mapper;
-
-import com.sinosoft.nimg.persistence.sysconfig.po.PrpDCode;
+import com.github.framework.evo.base.Page;
+import com.github.framework.evo.base.PageParam;
+import com.github.framework.evo.base.PageResult;
 import com.github.framework.evo.base.dao.BaseXmlDao;
+import com.sinosoft.nimg.persistence.sysconfig.po.PrpDCode;
+import com.sinosoft.nimg.persistence.sysconfig.vo.PrpDCodeVo;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  *
@@ -14,4 +17,5 @@ import com.github.framework.evo.base.dao.BaseXmlDao;
 @Mapper
 public interface PrpDCodeDao extends BaseXmlDao<PrpDCode, String> {
 
+    Page<PrpDCodeVo> query(PageParam pageParam, PrpDCode clone);
 }

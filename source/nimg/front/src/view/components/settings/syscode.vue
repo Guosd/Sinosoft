@@ -1,6 +1,25 @@
 <template>
   <div>
     <Card>
+      <div class="search-row">
+        <div class="search-cell">
+          <span class="search-text">查询条件</span>
+          <Input clearable placeholder="输入关键字搜索" class="search-input"/>
+        </div>
+        <div class="search-cell">
+          <span class="search-text">查询条件</span>
+          <Input clearable placeholder="输入关键字搜索" class="search-input"/>
+        </div>
+      </div>
+      <div class="search-btn-row">
+        <div class="search-btn">
+          <Button type="primary" @click="handleSearch" ghost>查询</Button>
+        </div>
+        <div class="search-btn">
+          <Button type="primary" ghost>撤销</Button>
+        </div>
+      </div>
+      <Divider />
       <tables
         :columns="columns"
         :loading="loading"
@@ -13,7 +32,9 @@
         v-model="tableData"
 
         @on-start-edit="handleRowEdit"
-        @on-delete="handleDelete"/>
+        @on-delete="handleDelete"
+        @on-search="handleSearch"
+      />
     </Card>
   </div>
 </template>
@@ -29,7 +50,7 @@ export default {
   },
   data () {
     return {
-      loading: true,
+      loading: false,
       columns: [
         { title: 'Name', key: 'name', sortable: true },
         { title: 'Email', key: 'email', editable: true },
@@ -67,9 +88,23 @@ export default {
     },
     handleRowEdit (params) {
       console.log(params)
+    },
+    handleSearch (params) {
+      this.loading = true
+      console.log('handleSearch', params)
+      getTableData().then(res => {
+        console.log('表格数据数据：', res.data)
+        this.tableData = {
+          pageSize: 10,
+          dataCount: 5,
+          data: res.data
+        }
+        this.loading = false
+      })
     }
   },
   mounted () {
+    /*
     getTableData().then(res => {
       console.log('表格数据数据：', res.data)
       this.tableData = {
@@ -79,6 +114,7 @@ export default {
       }
       this.loading = false
     })
+    */
   }
 }
 </script>

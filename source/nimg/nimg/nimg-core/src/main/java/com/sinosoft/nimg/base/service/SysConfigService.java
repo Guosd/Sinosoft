@@ -1,5 +1,10 @@
 package com.sinosoft.nimg.base.service;
 
+import com.github.framework.evo.base.Page;
+import com.github.framework.evo.base.PageParam;
+import com.github.framework.evo.base.PageResult;
+import com.github.framework.evo.base.util.PageHelper;
+import com.github.framework.evo.base.util.Pages;
 import com.github.framework.evo.common.uitl.BeanCopyUtils;
 import com.sinosoft.nimg.base.constrant.SysConfig;
 import com.sinosoft.nimg.persistence.sysconfig.dao.PrpDCodeDao;
@@ -8,7 +13,6 @@ import com.sinosoft.nimg.persistence.sysconfig.vo.PrpDCodeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -37,6 +41,13 @@ public class SysConfigService {
                 result = list.stream().collect(Collectors.toMap(PrpDCode::getCodeCode,PrpDCode::getCodeCName));
         }
 
+        return result;
+    }
+
+    public PageResult<PrpDCodeVo> queryForPage(PrpDCodeVo prpDCodeVo) {
+        PageParam pageParam = PageHelper.getPageParam(prpDCodeVo);
+        Page<PrpDCodeVo> gfbankaccountPage = prpDCodeDao.query(pageParam, BeanCopyUtils.clone(prpDCodeVo, PrpDCode.class));
+        PageResult<PrpDCodeVo> result = PageHelper.convert(gfbankaccountPage);
         return result;
     }
 }

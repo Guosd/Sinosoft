@@ -4,6 +4,13 @@
 <!-- ==================可直接使用Base配置文件中定义的节点！=================== -->
 <!-- ============================================================== -->
 <mapper namespace="com.sinosoft.nimg.persistence.sysconfig.dao.PrpDCodeDao">
-	<!-- 请在下方添加自定义配置--> 
-  
+	<!-- 请在下方添加自定义配置-->
+	<select id="query" resultMap="BaseResultMap" parameterType="com.sinosoft.nimg.persistence.sysconfig.po.PrpDCode">
+		select
+		<include refid="Base_Column_List" />
+		from PRP_D_CODE
+		<where>
+			<include refid="Base_Select_By_Like_Entity_Where" />
+		</where>
+	</select>
 </mapper>

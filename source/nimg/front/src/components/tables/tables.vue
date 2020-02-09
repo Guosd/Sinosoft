@@ -7,6 +7,7 @@
       <Input @on-change="handleClear" clearable placeholder="输入关键字搜索" class="search-input" v-model="searchValue"/>
       <Button @click="handleSearch" class="search-btn" type="primary"><Icon type="search"/>&nbsp;&nbsp;搜索</Button>
     </div>
+
     <Table
       ref="tablesMain"
       :data="insideTableData"
@@ -161,7 +162,8 @@ export default {
       tableData: {},
       insidePage: {
         dataCount: 0,
-        pageSize: 10
+        pageSize: 10,
+        pageIndex: 1
       },
       edittingCellId: '',
       edittingText: '',
@@ -285,11 +287,15 @@ export default {
     onExpand (row, status) {
       this.$emit('on-expand', row, status)
     },
-    changepage (page) {
-      console.log('改变页码', page)
+    changepage (pageIndex) {
+      this.insidePage.pageIndex = pageIndex
+      // console.log('on-page-change', pageIndex, this.insidePage.dataCount, this.insidePage.pageSize)
+      this.$emit('on-search', this.insidePage)
     },
-    pagesize (page) {
-      console.log('改变分页大小', page)
+    pagesize (pageSize) {
+      this.insidePage.pageSize = pageSize
+      // console.log('on-page-size', pageSize, this.insidePage.dataCount, this.insidePage.pageSize)
+      this.$emit('on-search', this.insidePage)
     }
   },
   watch: {
@@ -317,7 +323,6 @@ export default {
     height: 100%;
   }
   .paging{
-
     background-color: #F8F8F9;
     float: right;
   }
