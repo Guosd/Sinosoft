@@ -13,10 +13,10 @@
       </div>
       <div class="search-btn-row">
         <div class="search-btn">
-          <Button type="primary" @click="handleSearch" ghost>查询</Button>
+          <Button type="primary" icon="ios-search" @click="handleSearch" ghost>查询</Button>
         </div>
         <div class="search-btn">
-          <Button type="primary" ghost>撤销</Button>
+          <Button type="primary" icon="ios-add-circle-outline" ghost>添加</Button>
         </div>
       </div>
       <Divider />
@@ -31,7 +31,7 @@
 
         v-model="tableData"
 
-        @on-start-edit="handleRowEdit"
+        @on-save-edit="handleRowEditSave"
         @on-delete="handleDelete"
         @on-search="handleSearch"
       />
@@ -41,7 +41,7 @@
 
 <script>
 import Tables from '_c/tables'
-import { querySysCode } from '@/api/data'
+import { querySysCode, saveSysCode } from '@/api/data'
 
 export default {
   name: 'tables_page',
@@ -53,11 +53,11 @@ export default {
       loading: false,
       search: {},
       columns: [
-        { title: '类型', key: 'codeType' },
-        { title: '代码', key: 'codeCode' },
-        { title: '中文', key: 'codeCName' },
-        { title: '英文', key: 'codeEName' },
-        { title: '繁體', key: 'codeTName' },
+        { title: '类型', key: 'codeType', editable: true },
+        { title: '代码', key: 'codeCode', editable: true },
+        { title: '中文', key: 'codeCName', editable: true },
+        { title: '英文', key: 'codeEName', editable: true },
+        { title: '繁體', key: 'codeTName', editable: true },
         { title: '序号', key: 'displayNo' }
         /* {
           title: 'Handle',
@@ -90,15 +90,15 @@ export default {
     handleDelete (params) {
       console.log(params)
     },
-    handleRowEdit (params) {
-      console.log(params)
+    handleRowEditSave (params) {
+      saveSysCode(params).then(res => {
+        console.log('保存成功：', params)
+      })
     },
     handleSearch (params) {
       this.loading = true
       Object.assign(params, this.search)
-      console.log('handleSearch', params, this.search)
       querySysCode(params).then(res => {
-        console.log('表格数据数据：', res.data)
         this.tableData = res.data.data
         this.loading = false
       })

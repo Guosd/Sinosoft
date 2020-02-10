@@ -194,9 +194,9 @@ export default {
               this.$emit('on-cancel-edit', params)
             },
             'on-save-edit': (params) => {
-              this.value[params.row.initRowIndex][params.column.key] = this.edittingText
-              this.$emit('input', this.value)
-              this.$emit('on-save-edit', Object.assign(params, { value: this.edittingText }))
+              this.tableData.data[params.row.initRowIndex][params.column.key] = this.edittingText
+              this.$emit('input', this.tableData)
+              this.$emit('on-save-edit', this.tableData.data[params.row.initRowIndex])
               this.edittingCellId = ''
             }
           }
@@ -232,10 +232,15 @@ export default {
       if (e.target.value === '') this.insideTableData = this.tableData.data
     },
     handleSearch () {
-      this.insideTableData = this.tableData.data.filter(item => item[this.searchKey].indexOf(this.searchValue) > -1)
+      // this.insideTableData = this.tableData.data.filter(item => item[this.searchKey].indexOf(this.searchValue) > -1)
+      Object.assign(this.tableData, this.value)
+      this.insideTableData = this.tableData.data.map((item, index) => {
+        let res = item
+        res.initRowIndex = index
+        return res
+      })
     },
     handleTableData () {
-      console.log(this.tableData, this.insideTableData)
       if (this.tableData.data === undefined) {
         this.tableData = {}
         return

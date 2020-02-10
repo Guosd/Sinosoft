@@ -64,3 +64,11 @@ export const querySysCode = info => {
     method: 'post'
   })
 }
+
+export const saveSysCode = info => {
+  return axios.request({
+    url: 'sysconfig/saveSysCode',
+    data: info,
+    method: 'post'
+  })
+}
