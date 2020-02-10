@@ -212,7 +212,7 @@ export default {
       })
       let btns = item.button ? [].concat(insideBtns, item.button) : insideBtns
       item.render = (h, params) => {
-        params.tableData = this.value
+        params.tableData = this.tableData
         return h('div', btns.map(item => item(h, params, this)))
       }
       return item

@@ -4,7 +4,6 @@ import com.github.framework.evo.base.Page;
 import com.github.framework.evo.base.PageParam;
 import com.github.framework.evo.base.PageResult;
 import com.github.framework.evo.base.util.PageHelper;
-import com.github.framework.evo.base.util.Pages;
 import com.github.framework.evo.common.uitl.BeanCopyUtils;
 import com.sinosoft.nimg.base.constrant.SysConfig;
 import com.sinosoft.nimg.persistence.sysconfig.dao.PrpDCodeDao;
@@ -46,8 +45,26 @@ public class SysConfigService {
 
     public PageResult<PrpDCodeVo> queryForPage(PrpDCodeVo prpDCodeVo) {
         PageParam pageParam = PageHelper.getPageParam(prpDCodeVo);
-        Page<PrpDCodeVo> gfbankaccountPage = prpDCodeDao.query(pageParam, BeanCopyUtils.clone(prpDCodeVo, PrpDCode.class));
-        PageResult<PrpDCodeVo> result = PageHelper.convert(gfbankaccountPage);
+        Page<PrpDCode> gfbankaccountPage = prpDCodeDao.query(pageParam, BeanCopyUtils.clone(prpDCodeVo, PrpDCode.class));
+        PageResult<PrpDCodeVo> result = PageHelper.convert(gfbankaccountPage, PrpDCodeVo.class);
         return result;
     }
+
+    /**
+     * 保存系统代码
+     * @param prpDCodeVo
+     * @return
+     */
+    public Integer updateSysCode(PrpDCodeVo prpDCodeVo) {
+        return prpDCodeDao.updateSelective(BeanCopyUtils.clone(prpDCodeVo,PrpDCode.class));
+    }
+
+    public Integer deleteSysCode(PrpDCodeVo prpDCodeVo) {
+        return prpDCodeDao.delete(prpDCodeVo.getId());
+    }
+
+    public Integer saveSysCode(PrpDCodeVo prpDCodeVo) {
+        return 1;
+    }
+
 }

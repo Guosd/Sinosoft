@@ -160,7 +160,7 @@ export default [
           icon: 'md-code',
           title: 'systemCode'
         },
-        component: () => import('@/view/components/settings/syscode.vue')
+        component: () => import('@/view/components/settings/config/syscode.vue')
       }
     ]
   },

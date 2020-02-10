@@ -65,10 +65,19 @@ export const querySysCode = info => {
   })
 }
 
-export const saveSysCode = info => {
+export const updateSysCode = info => {
   return axios.request({
-    url: 'sysconfig/saveSysCode',
+    url: 'sysconfig/updateSysCode',
     data: info,
     method: 'post'
   })
 }
+
+export const deleteSysCode = info => {
+  return axios.request({
+    url: 'sysconfig/deleteSysCode',
+    data: info,
+    method: 'post'
+  })
+}
+

@@ -41,7 +41,7 @@
 
 <script>
 import Tables from '_c/tables'
-import { querySysCode, saveSysCode } from '@/api/data'
+import { querySysCode, updateSysCode, deleteSysCode } from '@/api/data'
 
 export default {
   name: 'tables_page',
@@ -58,40 +58,26 @@ export default {
         { title: '中文', key: 'codeCName', editable: true },
         { title: '英文', key: 'codeEName', editable: true },
         { title: '繁體', key: 'codeTName', editable: true },
-        { title: '序号', key: 'displayNo' }
-        /* {
-          title: 'Handle',
+        { title: '序号', key: 'displayNo' },
+        {
+          title: '操作',
           key: 'handle',
-          options: ['delete'],
-          button: [
-            (h, params, vm) => {
-              return h('Poptip', {
-                props: {
-                  confirm: true,
-                  title: '你确定要删除吗?'
-                },
-                on: {
-                  'on-ok': () => {
-                    vm.$emit('on-delete', params)
-                    vm.$emit('input', params.tableData.filter((item, index) => index !== params.row.initRowIndex))
-                  }
-                }
-              }, [
-                h('Button', '自定义删除')
-              ])
-            }
-          ]
-        } */
+          options: ['delete']
+        }
       ],
       tableData: {}
     }
   },
   methods: {
     handleDelete (params) {
-      console.log(params)
+      console.log('删除', params)
+      deleteSysCode(params).then(res => {
+        this.tableData = res.data.data
+        this.loading = false
+      })
     },
     handleRowEditSave (params) {
-      saveSysCode(params).then(res => {
+      updateSysCode(params).then(res => {
         console.log('保存成功：', params)
       })
     },
