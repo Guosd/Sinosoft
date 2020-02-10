@@ -105,7 +105,7 @@
 		<where>
 			<include refid="Base_Select_By_Like_Entity_Where" />
 		</where>
-	</sql> 
+	</sql>
 	<!-- 按主键查询一条记录 -->
 	<select id="get" resultMap="BaseResultMap" parameterType="map">
 		select

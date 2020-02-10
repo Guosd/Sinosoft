@@ -16,6 +16,7 @@
 		<result column="CODE_E_NAME" property="codeEName" />
 		<result column="CODE_T_NAME" property="codeTName" />
 		<result column="DISPLAY_NO" property="displayNo" />
+		<result column="DELETED_FLAG" property="deletedFlag" />
 		<result column="CREATE_BY" property="createBy" />
 		<result column="UPDATE_BY" property="updateBy" />
 		<result column="CREATE_TIME" property="createTime" />
@@ -31,7 +32,7 @@
 		CODE_E_NAME,
 		CODE_T_NAME,
 		DISPLAY_NO,
-		DELETE_FLAG,
+		DELETED_FLAG,
 		CREATE_BY,
 		UPDATE_BY,
 		CREATE_TIME,
@@ -40,7 +41,6 @@
 
 	<!-- 按对象查询记录的WHERE部分 -->
 	<sql id="Base_Select_By_Entity_Where">
-		DELETE_FLAG = 0
 		<if test="id != null and id != ''" >
 			and ID = #{id}
 		</if>
@@ -62,7 +62,7 @@
 		<if test="displayNo != null and displayNo != ''" >
 			and DISPLAY_NO = #{displayNo}
 		</if>
-
+		and DELETED_FLAG = '0' 
 		<if test="createBy != null and createBy != ''" >
 			and CREATE_BY = #{createBy}
 		</if>
@@ -89,7 +89,6 @@
 
 	<!-- 按对象查询记录的模糊匹配WHERE部分 -->
 	<sql id="Base_Select_By_Like_Entity_Where">
-		DELETE_FLAG = 0
 				<if test="id != null and id != ''" >
 					and ID like concat(concat('%',#{id}),'%')
 				</if>
@@ -111,6 +110,7 @@
 				<if test="displayNo != null and displayNo != ''" >
 					and DISPLAY_NO like concat(concat('%',#{displayNo}),'%')
 				</if>
+				and DELETED_FLAG = '0'
 				<if test="createBy != null and createBy != ''" >
 					and CREATE_BY like concat(concat('%',#{createBy}),'%')
 				</if>
@@ -133,7 +133,7 @@
 		<where>
 			<include refid="Base_Select_By_Like_Entity_Where" />
 		</where>
-	</sql> 
+	</sql>
 	<!-- 按主键查询一条记录 -->
 	<select id="get" resultMap="BaseResultMap" parameterType="map">
 		select
@@ -185,6 +185,7 @@
 			CODE_E_NAME,
 			CODE_T_NAME,
 			DISPLAY_NO,
+			DELETED_FLAG,
 			CREATE_BY,
 			UPDATE_BY,
 			CREATE_TIME,
@@ -197,6 +198,7 @@
 			#{codeEName},
 			#{codeTName},
 			#{displayNo},
+			'0',
 			#{createBy},
 			#{updateBy},
 			#{createTime},
@@ -228,6 +230,9 @@
 			</if>
 			<if test="displayNo != null" >
 				DISPLAY_NO,
+			</if>
+			<if test="deletedFlag != null" >
+				DELETED_FLAG,
 			</if>
 			<if test="createBy != null" >
 				CREATE_BY,
@@ -264,6 +269,7 @@
 			<if test="displayNo != null" >
 				#{displayNo},
 			</if>
+			'0',			
 			<if test="createBy != null" >
 				#{createBy},
 			</if>
@@ -301,6 +307,7 @@
 			<if test="displayNo != null" >
 				DISPLAY_NO=#{displayNo},
 			</if>
+			DELETED_FLAG = '0',
 			<if test="createBy != null" >
 				CREATE_BY=#{createBy},
 			</if>
@@ -326,6 +333,7 @@
 			CODE_E_NAME=#{codeEName},
 			CODE_T_NAME=#{codeTName},
 			DISPLAY_NO=#{displayNo},
+			DELETED_FLAG = '0',
 			CREATE_BY=#{createBy},
 			UPDATE_BY=#{updateBy},
 			CREATE_TIME=#{createTime},
@@ -335,7 +343,8 @@
 
 	<!-- 按主键删除一条记录 -->
 	<delete id="delete" parameterType="map">
-		update PRP_D_CODE set DELETE_FLAG=1
+		update PRP_D_CODE set
+			DELETED_FLAG = '1'
 		where ID = #{param1}
 	</delete>
 </mapper>

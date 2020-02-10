@@ -10,7 +10,7 @@ create table prp_d_code
     code_e_name varchar2(32),
     code_t_name varchar2(32),
     display_no  number,
-    delete_flag varchar2(2),
+    deleted_flag varchar2(2),
     create_by   varchar2(32),
     update_By   varchar2(32),
     create_Time Date,
