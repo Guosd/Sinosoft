@@ -4,6 +4,13 @@
 <!-- ==================可直接使用Base配置文件中定义的节点！=================== -->
 <!-- ============================================================== -->
 <mapper namespace="com.sinosoft.nimg.persistence.sysuser.dao.PrpDUserDao">
-	<!-- 请在下方添加自定义配置--> 
-  
+	<!-- 请在下方添加自定义配置-->
+	<select id="permission" resultType="java.lang.String" parameterType="map">
+		select t.TASK_CODE from PRP_D_USER u,PRP_D_USER_ROLE ur , PRP_D_ROLE_TASK rt , PRP_D_TASK T
+		where ur.USER_ID = u.ID
+		  and ur.ROLE_ID = rt.ROLE_ID
+		  and rt.TASK_ID = t.ID
+		  and u.USER_CODE = #{param1}
+	</select>
+
 </mapper>

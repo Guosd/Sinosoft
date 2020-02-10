@@ -74,6 +74,7 @@ export default [
     path: '/components',
     name: 'demo',
     meta: {
+      access: ['nimg.demo'],
       icon: 'logo-buffer',
       title: '示例'
     },
@@ -84,7 +85,8 @@ export default [
         name: 'tables_page',
         meta: {
           icon: 'md-grid',
-          title: '多功能表格'
+          title: '多功能表格',
+          access: ['nimg.demo.tables']
         },
         component: () => import('@/view/components/tables/tables.vue')
       },
@@ -93,7 +95,8 @@ export default [
         name: 'icons_page',
         meta: {
           icon: '_bear',
-          title: '自定义图标'
+          title: '自定义图标',
+          access: ['nimg.demo.icons']
         },
         component: () => import('@/view/components/icons/icons.vue')
       }
@@ -103,7 +106,7 @@ export default [
     path: '/settings',
     name: 'settings',
     meta: {
-      access: ['settings'],
+      access: ['nimg.settings'],
       icon: 'ios-settings',
       title: '系统配置'
     },
@@ -113,7 +116,7 @@ export default [
         path: 'user_settings',
         name: 'userSettings',
         meta: {
-          access: ['user_setting'],
+          access: ['nimg.settings.userSettings'],
           icon: 'md-funnel',
           showAlways: true,
           title: '人员配置'
@@ -124,7 +127,7 @@ export default [
             path: 'user_page',
             name: 'userPage',
             meta: {
-              access: ['user_page'],
+              access: ['nimg.settings.userSettings.userPage'],
               icon: 'md-person',
               title: 'userPage'
             },
@@ -134,7 +137,7 @@ export default [
             path: 'roles_page',
             name: 'rolesPage',
             meta: {
-              access: ['roles_page'],
+              access: ['nimg.settings.userSettings.rolesPage'],
               icon: 'ios-contacts',
               title: 'rolesPage'
             },
@@ -144,7 +147,7 @@ export default [
             path: 'function_page',
             name: 'functionPage',
             meta: {
-              access: ['function_page'],
+              access: ['nimg.settings.userSettings.functionPage'],
               icon: 'ios-funnel',
               title: 'functionPage'
             },
@@ -156,7 +159,7 @@ export default [
         path: 'system_code',
         name: 'systemCode',
         meta: {
-          access: ['system_code'],
+          access: ['nimg.settings.systemCode'],
           icon: 'md-code',
           title: 'systemCode'
         },
