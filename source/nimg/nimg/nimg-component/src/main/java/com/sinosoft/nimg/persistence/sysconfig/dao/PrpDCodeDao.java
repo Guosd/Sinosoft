@@ -17,5 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PrpDCodeDao extends BaseXmlDao<PrpDCode, String> {
 
-    Page<PrpDCodeVo> query(PageParam pageParam, PrpDCode clone);
+    Page<PrpDCode> query(PageParam pageParam, PrpDCode clone);
 }
