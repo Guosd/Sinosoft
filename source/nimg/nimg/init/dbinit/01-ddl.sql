@@ -29,7 +29,7 @@ comment on column prp_d_code.code_e_name is '英文名称';
 comment on column prp_d_code.code_t_name is '繁体名称';
 
 comment on column prp_d_code.display_no is '显示序号';
-comment on column prp_d_code.delete_flag is '删除标志';
+comment on column prp_d_code.DELETED_FLAG is '删除标志';
 
 comment on column prp_d_code.create_by is '创建者';
 comment on column prp_d_code.create_Time is '创建时间';
@@ -49,7 +49,7 @@ create table prp_d_user
     password    varchar2(32),
     key         varchar2(32),
     iv          varchar2(32),
-    delete_flag varchar2(2),
+    DELETED_FLAG varchar2(2),
     system      varchar2(32),
     create_by   varchar2(32),
     update_By   varchar2(32),
@@ -66,7 +66,7 @@ comment on column prp_d_user.com_code is '机构代码';
 comment on column prp_d_user.password is '密码';
 comment on column prp_d_user.key is 'aes加密key';
 comment on column prp_d_user.iv is 'aes加密偏移量';
-comment on column prp_d_user.delete_flag is '删除标志';
+comment on column prp_d_user.DELETED_FLAG is '删除标志';
 comment on column prp_d_user.system is '系统代码';
 
 comment on column prp_d_user.create_by is '创建者';
@@ -85,7 +85,7 @@ create table prp_d_task
     task_name   varchar2(128),
     url         varchar2(128),
     system      varchar2(32),
-    delete_flag varchar2(2),
+    DELETED_FLAG varchar2(2),
     create_by   varchar2(32),
     update_By   varchar2(32),
     create_Time Date,
@@ -100,7 +100,7 @@ comment on column prp_d_task.parent_code is '父任务代码';
 comment on column prp_d_task.task_name is '任务名称';
 comment on column prp_d_task.url is '任务链接';
 comment on column prp_d_task.system is '系统代码';
-comment on column prp_d_task.delete_flag is '删除标志';
+comment on column prp_d_task.DELETED_FLAG is '删除标志';
 
 comment on column prp_d_task.create_by is '创建者';
 comment on column prp_d_task.create_Time is '创建时间';
@@ -117,7 +117,7 @@ create table prp_d_role
     role_code   varchar2(128),
     role_name   varchar2(128),
     system      varchar2(32),
-    delete_flag varchar2(2),
+    DELETED_FLAG varchar2(2),
     create_by   varchar2(32),
     update_By   varchar2(32),
     create_Time Date,
@@ -131,7 +131,7 @@ comment on column prp_d_role.id is '主键';
 comment on column prp_d_role.role_code is '角色代码';
 comment on column prp_d_role.role_name is '角色名称';
 comment on column prp_d_role.system is '系统代码';
-comment on column prp_d_role.delete_flag is '删除标志';
+comment on column prp_d_role.DELETED_FLAG is '删除标志';
 
 comment on column prp_d_role.create_by is '创建者';
 comment on column prp_d_role.create_Time is '创建时间';
@@ -145,7 +145,7 @@ create table prp_d_user_role
     user_id     varchar2(32),
     role_id     varchar2(32),
 
-    delete_flag varchar2(2),
+    DELETED_FLAG varchar2(2),
     create_by   varchar2(32),
     update_By   varchar2(32),
     create_Time Date,
@@ -158,7 +158,7 @@ comment on column prp_d_user_role.id is '主键';
 comment on column prp_d_user_role.user_id is '用户主键';
 comment on column prp_d_user_role.role_id is '角色主键';
 
-comment on column prp_d_user_role.delete_flag is '删除标志';
+comment on column prp_d_user_role.DELETED_FLAG is '删除标志';
 comment on column prp_d_user_role.create_by is '创建者';
 comment on column prp_d_user_role.create_Time is '创建时间';
 comment on column prp_d_user_role.update_By is '更新者';
@@ -171,7 +171,7 @@ create table prp_d_role_task
     task_id     varchar2(32),
     role_id     varchar2(32),
 
-    delete_flag varchar2(2),
+    DELETED_FLAG varchar2(2),
     create_by   varchar2(32),
     update_By   varchar2(32),
     create_Time Date,
@@ -185,7 +185,7 @@ comment on column prp_d_role_task.id is '主键';
 comment on column prp_d_role_task.task_id is '任务主键';
 comment on column prp_d_role_task.role_id is '角色主键';
 
-comment on column prp_d_role_task.delete_flag is '删除标志';
+comment on column prp_d_role_task.DELETED_FLAG is '删除标志';
 comment on column prp_d_role_task.create_by is '创建者';
 comment on column prp_d_role_task.create_Time is '创建时间';
 comment on column prp_d_role_task.update_By is '更新者';

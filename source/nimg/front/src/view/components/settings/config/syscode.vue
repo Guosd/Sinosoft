@@ -72,13 +72,12 @@ export default {
     handleDelete (params) {
       console.log('删除', params)
       deleteSysCode(params).then(res => {
-        this.tableData = res.data.data
-        this.loading = false
+        this.$Message.success('删除成功！')
       })
     },
     handleRowEditSave (params) {
       updateSysCode(params).then(res => {
-        console.log('保存成功：', params)
+        this.$Message.success('修改成功！')
       })
     },
     handleSearch (params) {
