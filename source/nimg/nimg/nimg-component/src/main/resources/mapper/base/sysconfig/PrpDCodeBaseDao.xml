@@ -231,9 +231,7 @@
 			<if test="displayNo != null" >
 				DISPLAY_NO,
 			</if>
-			<if test="deletedFlag != null" >
-				DELETED_FLAG,
-			</if>
+			DELETED_FLAG,
 			<if test="createBy != null" >
 				CREATE_BY,
 			</if>

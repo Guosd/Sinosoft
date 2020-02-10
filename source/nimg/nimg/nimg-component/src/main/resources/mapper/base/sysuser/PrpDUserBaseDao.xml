@@ -241,9 +241,7 @@
 			<if test="iv != null" >
 				IV,
 			</if>
-			<if test="deletedFlag != null" >
-				DELETED_FLAG,
-			</if>
+			DELETED_FLAG,
 			<if test="system != null" >
 				SYSTEM,
 			</if>

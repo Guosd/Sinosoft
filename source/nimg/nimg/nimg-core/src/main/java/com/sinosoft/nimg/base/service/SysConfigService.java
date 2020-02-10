@@ -64,7 +64,7 @@ public class SysConfigService {
     }
 
     public Integer saveSysCode(PrpDCodeVo prpDCodeVo) {
-        return 1;
+        return prpDCodeDao.insertSelective(BeanCopyUtils.clone(prpDCodeVo,PrpDCode.class));
     }
 
 }

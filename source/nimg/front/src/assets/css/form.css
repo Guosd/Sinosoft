@@ -1,0 +1,32 @@
+.form-box{
+  width: 99%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  border-top: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+}
+.form-row{
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+}
+.form-cell{
+  display: flex;
+  width: 50%;
+}
+.form-text{
+  width: 40%;
+  text-align: center;
+  vertical-align: center;
+  padding: 2px 4px 2px 4px;
+  line-height: 28px;
+  background-color: #F8F8F9;
+  border-right: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+}
+.form-input input{
+  line-height: 20px;
+  height: 100%;
+  width: 100%;
+  border-color: #ffffff !important;
+}

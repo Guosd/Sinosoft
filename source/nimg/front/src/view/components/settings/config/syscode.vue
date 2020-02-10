@@ -16,7 +16,7 @@
           <Button type="primary" icon="ios-search" @click="handleSearch" ghost>查询</Button>
         </div>
         <div class="search-btn">
-          <Button type="primary" icon="ios-add-circle-outline" ghost>添加</Button>
+          <Button type="primary" icon="ios-add-circle-outline" @click="$refs.codeAdd.show()" ghost>添加</Button>
         </div>
       </div>
       <Divider />
@@ -35,6 +35,7 @@
         @on-delete="handleDelete"
         @on-search="handleSearch"
       />
+      <code-add ref="codeAdd" @handleAdd="handleAdd"></code-add>
     </Card>
   </div>
 </template>
@@ -42,11 +43,13 @@
 <script>
 import Tables from '_c/tables'
 import { querySysCode, updateSysCode, deleteSysCode } from '@/api/data'
+import CodeAdd from './syscodeadd'
 
 export default {
   name: 'tables_page',
   components: {
-    Tables
+    Tables,
+    CodeAdd
   },
   data () {
     return {
@@ -87,6 +90,9 @@ export default {
         this.tableData = res.data.data
         this.loading = false
       })
+    },
+    handleAdd () {
+      this.$refs.codeAdd.show()
     }
   },
   mounted () {
