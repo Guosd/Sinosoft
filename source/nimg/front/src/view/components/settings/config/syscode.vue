@@ -56,7 +56,7 @@ export default {
       loading: false,
       search: {},
       columns: [
-        { title: '类型', key: 'codeType', editable: true },
+        { title: '类型', key: 'codeType', width: '100px', editable: true },
         { title: '代码', key: 'codeCode', editable: true },
         { title: '中文', key: 'codeCName', editable: true },
         { title: '英文', key: 'codeEName', editable: true },
@@ -65,6 +65,7 @@ export default {
         {
           title: '操作',
           key: 'handle',
+          width: '100px',
           options: ['delete']
         }
       ],

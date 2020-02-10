@@ -38,7 +38,7 @@
       <slot name="header" slot="header"></slot>
       <slot name="footer" slot="footer" v-if=footer>
         <div class="footer">
-          <Page :total="insidePage.totalCount" :page-size="insidePage.pageSize" show-sizer class="paging" @on-change="changepage" @on-page-size-change="pagesize"></Page>
+          <Page :current="insidePage.pageNum" :total="insidePage.totalCount" :page-size="insidePage.pageSize" show-sizer class="paging" @on-change="changepage" @on-page-size-change="pagesize"></Page>
         </div>
       </slot>
       <slot name="footer" slot="footer" v-else-if=!footer></slot>
@@ -252,9 +252,9 @@ export default {
       })
       this.insidePage = {
         totalCount: this.tableData.totalCount,
-        pageSize: this.tableData.pageSize
+        pageSize: this.tableData.pageSize,
+        pageNum: this.tableData.pageNum
       }
-      Object.assign(this.insidePage, this.insidePage)
     },
     exportCsv (params) {
       this.$refs.tablesMain.exportCsv(params)
