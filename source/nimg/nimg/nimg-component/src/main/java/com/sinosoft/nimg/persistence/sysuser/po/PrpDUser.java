@@ -30,8 +30,8 @@ public class PrpDUser extends BaseXmlEntity implements Serializable {
 	private String key;
 	/** 对应字段：IV,备注：aes加密偏移量 */
 	private String iv;
-	/** 对应字段：DELETE_FLAG,备注：删除标志 */
-	private String deleteFlag;
+	/** 对应字段：DELETED_FLAG,备注：删除标志 */
+	private String deletedFlag;
 	/** 对应字段：SYSTEM,备注：系统代码 */
 	private String system;
 	/** 对应字段：CREATE_BY,备注：创建者 */

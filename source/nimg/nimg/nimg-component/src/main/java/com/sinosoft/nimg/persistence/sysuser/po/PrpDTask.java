@@ -28,8 +28,8 @@ public class PrpDTask extends BaseXmlEntity implements Serializable {
 	private String url;
 	/** 对应字段：SYSTEM,备注：系统代码 */
 	private String system;
-	/** 对应字段：DELETE_FLAG,备注：删除标志 */
-	private String deleteFlag;
+	/** 对应字段：DELETED_FLAG,备注：删除标志 */
+	private String deletedFlag;
 	/** 对应字段：CREATE_BY,备注：创建者 */
 	private String createBy;
 	/** 对应字段：UPDATE_BY,备注：更新者 */

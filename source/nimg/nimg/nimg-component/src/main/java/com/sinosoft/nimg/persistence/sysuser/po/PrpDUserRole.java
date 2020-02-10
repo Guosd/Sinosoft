@@ -22,8 +22,8 @@ public class PrpDUserRole extends BaseXmlEntity implements Serializable {
 	private String userId;
 	/** 对应字段：ROLE_ID,备注：角色主键 */
 	private String roleId;
-	/** 对应字段：DELETE_FLAG,备注：删除标志 */
-	private String deleteFlag;
+	/** 对应字段：DELETED_FLAG,备注：删除标志 */
+	private String deletedFlag;
 	/** 对应字段：CREATE_BY,备注：创建者 */
 	private String createBy;
 	/** 对应字段：UPDATE_BY,备注：更新者 */

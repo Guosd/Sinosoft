@@ -15,7 +15,7 @@
 		<result column="TASK_NAME" property="taskName" />
 		<result column="URL" property="url" />
 		<result column="SYSTEM" property="system" />
-		<result column="DELETE_FLAG" property="deleteFlag" />
+		<result column="DELETED_FLAG" property="deletedFlag" />
 		<result column="CREATE_BY" property="createBy" />
 		<result column="UPDATE_BY" property="updateBy" />
 		<result column="CREATE_TIME" property="createTime" />
@@ -30,7 +30,7 @@
 		TASK_NAME,
 		URL,
 		SYSTEM,
-		DELETE_FLAG,
+		DELETED_FLAG,
 		CREATE_BY,
 		UPDATE_BY,
 		CREATE_TIME,
@@ -57,9 +57,7 @@
 		<if test="system != null and system != ''" >
 			and SYSTEM = #{system}
 		</if>
-		<if test="deleteFlag != null and deleteFlag != ''" >
-			and DELETE_FLAG = #{deleteFlag}
-		</if>
+		and DELETED_FLAG = '0' 
 		<if test="createBy != null and createBy != ''" >
 			and CREATE_BY = #{createBy}
 		</if>
@@ -104,9 +102,7 @@
 				<if test="system != null and system != ''" >
 					and SYSTEM like concat(concat('%',#{system}),'%')
 				</if>
-				<if test="deleteFlag != null and deleteFlag != ''" >
-					and DELETE_FLAG like concat(concat('%',#{deleteFlag}),'%')
-				</if>
+				and DELETED_FLAG = '0'
 				<if test="createBy != null and createBy != ''" >
 					and CREATE_BY like concat(concat('%',#{createBy}),'%')
 				</if>
@@ -180,7 +176,7 @@
 			TASK_NAME,
 			URL,
 			SYSTEM,
-			DELETE_FLAG,
+			DELETED_FLAG,
 			CREATE_BY,
 			UPDATE_BY,
 			CREATE_TIME,
@@ -192,7 +188,7 @@
 			#{taskName},
 			#{url},
 			#{system},
-			#{deleteFlag},
+			'0',
 			#{createBy},
 			#{updateBy},
 			#{createTime},
@@ -222,8 +218,8 @@
 			<if test="system != null" >
 				SYSTEM,
 			</if>
-			<if test="deleteFlag != null" >
-				DELETE_FLAG,
+			<if test="deletedFlag != null" >
+				DELETED_FLAG,
 			</if>
 			<if test="createBy != null" >
 				CREATE_BY,
@@ -257,9 +253,7 @@
 			<if test="system != null" >
 				#{system},
 			</if>
-			<if test="deleteFlag != null" >
-				#{deleteFlag},
-			</if>
+			'0',			
 			<if test="createBy != null" >
 				#{createBy},
 			</if>
@@ -294,9 +288,7 @@
 			<if test="system != null" >
 				SYSTEM=#{system},
 			</if>
-			<if test="deleteFlag != null" >
-				DELETE_FLAG=#{deleteFlag},
-			</if>
+			DELETED_FLAG = '0',
 			<if test="createBy != null" >
 				CREATE_BY=#{createBy},
 			</if>
@@ -321,7 +313,7 @@
 			TASK_NAME=#{taskName},
 			URL=#{url},
 			SYSTEM=#{system},
-			DELETE_FLAG=#{deleteFlag},
+			DELETED_FLAG = '0',
 			CREATE_BY=#{createBy},
 			UPDATE_BY=#{updateBy},
 			CREATE_TIME=#{createTime},
@@ -331,7 +323,8 @@
 
 	<!-- 按主键删除一条记录 -->
 	<delete id="delete" parameterType="map">
-		delete from PRP_D_TASK
+		update PRP_D_TASK set
+			DELETED_FLAG = '1'
 		where ID = #{param1}
 	</delete>
 </mapper>
