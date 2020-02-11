@@ -35,7 +35,7 @@
         @on-delete="handleDelete"
         @on-search="handleSearch"
       />
-      <code-add ref="codeAdd" @handleAdd="handleAdd"></code-add>
+      <code-add ref="codeAdd"></code-add>
     </Card>
   </div>
 </template>
@@ -91,9 +91,6 @@ export default {
         this.tableData = res.data.data
         this.loading = false
       })
-    },
-    handleAdd () {
-      this.$refs.codeAdd.show()
     }
   },
   mounted () {

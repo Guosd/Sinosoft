@@ -82,3 +82,40 @@ export const restoreTrash = msg_id => {
     }
   })
 }
+
+/**
+ * 查询角色信息
+ * @param info
+ * @returns
+ */
+export const querySysRole = info => {
+  return axios.request({
+    url: 'user/queryForPage',
+    data: info,
+    method: 'post'
+  })
+}
+
+export const updateSysRole = info => {
+  return axios.request({
+    url: 'user/updateSysRole',
+    data: info,
+    method: 'post'
+  })
+}
+
+export const deleteSysRole = info => {
+  return axios.request({
+    url: 'user/deleteSysRole',
+    data: info,
+    method: 'post'
+  })
+}
+
+export const saveSysRole = info => {
+  return axios.request({
+    url: 'user/saveSysRole',
+    data: info,
+    method: 'post'
+  })
+}
