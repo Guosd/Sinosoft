@@ -3,17 +3,14 @@ package com.sinosoft.nimg.base.controller;
 import com.github.framework.evo.base.PageResult;
 import com.github.framework.evo.common.model.ResponseVo;
 import com.sinosoft.nimg.base.service.UserService;
-import com.sinosoft.nimg.persistence.sysconfig.po.PrpDCode;
-import com.sinosoft.nimg.persistence.sysuser.po.PrpDTask;
 import com.sinosoft.nimg.persistence.sysuser.vo.PrpDRoleVo;
-import com.sinosoft.nimg.persistence.sysuser.vo.PrpDTaskVo;
 import com.sinosoft.nimg.persistence.sysuser.vo.PrpDUserVo;
+import com.sinosoft.nimg.persistence.sysuser.vo.TaskTreeQueryVo;
+import com.sinosoft.nimg.persistence.sysuser.vo.TaskTreeSaveVo;
+import feign.RequestLine;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -51,9 +48,18 @@ public class UserController {
     /**
      * 查询taskCode
      */
-    @ApiOperation(value = "查询所有TaskCode")
-    @PostMapping("/taskQuery")
-    public ResponseVo<List<PrpDTaskVo>> queryTask(){
-        return ResponseVo.ok(userService.queryTask());
+    @ApiOperation(value = "查询树状结构")
+    @PostMapping("/queryTaskRoleRelated")
+    public ResponseVo<List<TaskTreeQueryVo>> queryTaskRoleRelated(@RequestBody String roleId){
+        return ResponseVo.ok(userService.queryTaskRoleRelated(roleId));
+    }
+
+    /**
+     * 查询taskCode
+     */
+    @ApiOperation(value = "保存关联关系")
+    @PostMapping("/saveTaskRoleRelated")
+    public ResponseVo<Integer> saveTaskRoleRelated(@RequestBody TaskTreeSaveVo taskTreeSaveVo){
+        return ResponseVo.ok(userService.saveTaskRoleRelated(taskTreeSaveVo));
     }
 }

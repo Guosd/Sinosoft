@@ -119,3 +119,22 @@ export const saveSysRole = info => {
     method: 'post'
   })
 }
+
+export const queryTaskRoleRelated = info => {
+  return axios.request({
+    url: 'user/queryTaskRoleRelated',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: info,
+    method: 'post'
+  })
+}
+
+export const saveTaskRoleRelated = info => {
+  return axios.request({
+    url: 'user/saveTaskRoleRelated',
+    data: info,
+    method: 'post'
+  })
+}

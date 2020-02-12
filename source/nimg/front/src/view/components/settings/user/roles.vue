@@ -80,7 +80,7 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.config(params.index)
+                      this.config(params)
                     }
                   }
                 }, '配置')
@@ -112,9 +112,8 @@ export default {
         this.loading = false
       })
     },
-    config () {
-      console.log('config')
-      this.$refs.roleRelated.show()
+    config (params) {
+      this.$refs.roleRelated.show(params.row.id)
     }
   },
   mounted () {
