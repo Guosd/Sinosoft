@@ -4,6 +4,34 @@
 <!-- ==================可直接使用Base配置文件中定义的节点！=================== -->
 <!-- ============================================================== -->
 <mapper namespace="com.sinosoft.nimg.persistence.sysuser.dao.PrpDRoleTaskDao">
-	<!-- 请在下方添加自定义配置--> 
-  
+	<!-- 请在下方添加自定义配置-->
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into PRP_D_ROLE_TASK
+		(<include refid="Base_Column_List" />)
+
+		<if test="list != null and list.size > 0">
+			<foreach collection="list" item="item" index="index" separator="union all">
+				(
+				SELECT
+				#{item.id, jdbcType=VARCHAR},
+				#{item.taskId, jdbcType=VARCHAR},
+				#{item.roleId,jdbcType=VARCHAR},
+				0,
+				#{item.createBy, jdbcType=VARCHAR},
+				#{item.updateBy, jdbcType=VARCHAR},
+				#{item.createTime, jdbcType=VARCHAR},
+				#{item.updateTime, jdbcType=VARCHAR}
+				FROM DUAL
+				)
+			</foreach>
+		</if>
+	</insert>
+
+	<!-- 查询行数 -->
+	<delete id="deleteByCondition" parameterType="com.sinosoft.nimg.persistence.sysuser.po.PrpDRoleTask">
+		delete PRP_D_ROLE_TASK
+		<where>
+			<include refid="Base_Select_By_Entity_Where" />
+		</where>
+	</delete>
 </mapper>
